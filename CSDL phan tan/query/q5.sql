@@ -1,0 +1,4 @@
+select * from Orders
+where OrderDate = (
+	select max(OrderDate) from Orders
+)
