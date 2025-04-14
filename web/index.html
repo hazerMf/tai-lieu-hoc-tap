@@ -3,83 +3,95 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Đăng ký thông tin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      .form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+      }
+      .form-title {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+    </style>
   </head>
   <body>
     
-    <form class="row g-3 ">
-        <h1>Đăng ký thông tin</h1>
+    <form class="row g-3" action="process_form.php" method="POST">
+        <h1 class="form-title">Đăng ký thông tin</h1>
         
         <div class="col-md-6 mb-3">
-            <label for="exampleInputFName" class="form-label">Họ</label>
-            <input type="text" class="form-control" id="exampleInputFName" placeholder="Nhập họ của bạn" aria-describedby="fnameHelp">
+        <label for="exampleInputFName" class="form-label">Họ</label>
+        <input type="text" class="form-control" id="exampleInputFName" name="first_name" placeholder="Nhập họ của bạn" required>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="exampleInputLName" class="form-label">Tên</label>
-            <input type="text" class="form-control" id="exampleInputLName" placeholder="Nhập tên của bạn" aria-describedby="lnameHelp">
+        <label for="exampleInputLName" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="exampleInputLName" name="last_name" placeholder="Nhập tên của bạn" required>
         </div>
         
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu của bạn">
-          </div>
+        <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập mật khẩu của bạn" required>
+        </div>
 
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nhập email của bạn" aria-describedby="emailHelp">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Nhập email của bạn" required>
         </div>
         
         <div class="col-md-4">
-            <label for="dob" class="form-label">Ngày sinh:</label>
-            <input type="date" class="form-control">
+        <label for="dob" class="form-label">Ngày sinh:</label>
+        <input type="date" class="form-control" name="dob" required>
         </div>
         
         <div class="col-md-4 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Giới tính:</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                Nam
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                Nữ
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                Khác
-                </label>
-            </div>
+        <label class="form-label">Giới tính:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+            <label class="form-check-label" for="male">Nam</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+            <label class="form-check-label" for="female">Nữ</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="other" value="other">
+            <label class="form-check-label" for="other">Khác</label>
+        </div>
         </div>
 
         <div class="col-md-4 mb-3">
-            <div class="input-group mb-3">
-                <label for="city" class="form-label">Thành phố: </label>
-                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">--Mời chọn--</button>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Hà Nội</a></li>
-                <li><a class="dropdown-item" href="#">Hồ Chí Minh</a></li>
-                <li><a class="dropdown-item" href="#">Đà Nẵng</a></li>
-
-                </ul>
-            </div>
+        <label for="city" class="form-label">Thành phố:</label>
+        <select class="form-select" name="city" required>
+            <option value="">--Mời chọn--</option>
+            <option value="hanoi">Hà Nội</option>
+            <option value="hcm">Hồ Chí Minh</option>
+            <option value="danang">Đà Nẵng</option>
+        </select>
         </div>
 
         <div class="col-md-6">
-            <label for="" class="col-md-6">Mô tả bản thân</label>
-            <textarea name="" id="" class="col-md-6" placeholder="Nhập mô tả bản thân"></textarea>
+            <label for="description" class="form-label">Mô tả bản thân</label>
+            <textarea class="form-control" id="description" name="description" rows="4" style="width: 100%; resize: none;" placeholder="Nhập mô tả bản thân"></textarea>
         </div>
         
-        </form>
-        <button type="submit" class="btn btn-primary ">Đăng kí</button>
-
-        <button type="redo" class="btn btn-primary ">Làm lại</button>
+        <div class="btn-group col-12 justify-content-center">
+            <button type="submit" class="btn btn-primary" style="width: 100px;">Đăng ký</button>
+            <button type="reset" class="btn btn-secondary" style="width: 100px;">Làm lại</button>
+        </div>
+    </form>
       
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

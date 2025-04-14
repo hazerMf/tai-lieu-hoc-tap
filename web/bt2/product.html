@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản Lý Kho Hàng - Sản Phẩm</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <span class="glyphicon glyphicon-home"></span> Quản Lý Kho Hàng
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html">
+                    <span class="glyphicon glyphicon-dashboard"></span> Bảng Điều Khiển
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-list"></span> Sản Phẩm
+                </a>
+            </li>
+            <li>
+                <a href="provider.html">
+                    <span class="glyphicon glyphicon-briefcase"></span> Nhà Cung Cấp
+                </a>
+            </li>
+            <li>
+                <a href="statistics.html">
+                    <span class="glyphicon glyphicon-stats"></span> Thống Kê
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <span class="glyphicon glyphicon-cog"></span> Cài Đặt
+                </a>
+            </li>
+            <li>
+                <a href="login.html">
+                    <span class="glyphicon glyphicon-log-out"></span> Đăng Xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="search-box">
+                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+            </div>
+            <div class="user-menu">
+                <span class="glyphicon glyphicon-bell"></span>
+                <span class="glyphicon glyphicon-user"></span>
+                <span>Quản Trị Viên</span>
+            </div>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3>150</h3>
+                <p>Tổng Sản Phẩm</p>
+            </div>
+            <div class="stat-card">
+                <h3>28</h3>
+                <p>Danh Mục</p>
+            </div>
+            <div class="stat-card">
+                <h3>1,204</h3>
+                <p>Tổng Hàng Tồn</p>
+            </div>
+            <div class="stat-card">
+                <h3>45,250,000đ</h3>
+                <p>Doanh Thu</p>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-header">
+                <h2>Quản Lý Sản Phẩm</h2>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">
+                    <span class="glyphicon glyphicon-plus"></span> Thêm Sản Phẩm
+                </button>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Danh Mục</th>
+                            <th>Giá</th>
+                            <th>Tồn Kho</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Sản Phẩm Mẫu</td>
+                            <td>Danh Mục Mẫu</td>
+                            <td>1.000.000 VNĐ</td>
+                            <td>100</td>
+                            <td><span class="status-badge status-active">Còn Hàng</span></td>
+                            <td>
+                                <button class="btn btn-warning btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Thêm Sản Phẩm Mới</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="productName">Tên Sản Phẩm:</label>
+                            <input type="text" class="form-control" id="productName" placeholder="Nhập tên sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Danh Mục:</label>
+                            <select class="form-control" id="category">
+                                <option value="1">Danh Mục 1</option>
+                                <option value="2">Danh Mục 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Giá:</label>
+                            <input type="number" class="form-control" id="price" placeholder="Nhập giá sản phẩm">
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Số Lượng Tồn Kho:</label>
+                            <input type="number" class="form-control" id="stock" placeholder="Nhập số lượng tồn kho">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Trạng Thái:</label>
+                            <select class="form-control" id="status">
+                                <option value="active">Còn Hàng</option>
+                                <option value="inactive">Hết Hàng</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span> Thêm Sản Phẩm
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirm Logout</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Check if user is logged in
+            if (!sessionStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html';
+            }
+
+            // Update username
+            $('.user-menu span:last').text(sessionStorage.getItem('username') || 'Quản Trị Viên');
+
+            // Handle logout
+            $('.sidebar-menu a[href="login.html"]').click(function(e) {
+                e.preventDefault();
+                if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                    sessionStorage.removeItem('isLoggedIn');
+                    sessionStorage.removeItem('username');
+                    window.location.href = 'login.html';
+                }
+            });
+
+            // Handle sidebar toggle
+            $('#sidebarToggle').click(function() {
+                $('.sidebar').toggleClass('active');
+            });
+
+            // Handle mobile menu clicks
+            if ($(window).width() <= 768) {
+                $('.sidebar-menu a').click(function() {
+                    $('.sidebar').removeClass('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

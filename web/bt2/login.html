@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Warehouse Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Warehouse Admin</h2>
+                <p>Please login to continue</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-login">Login</button>
+                <div class="alert alert-danger" id="loginAlert" role="alert">
+                    Invalid username or password!
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Check if user is already logged in
+            if (sessionStorage.getItem('isLoggedIn')) {
+                window.location.href = 'index.html';
+            }
+
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const username = $('#username').val();
+                const password = $('#password').val();
+
+                if (username === 'admin' && password === '12345') {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('username', username);
+                    window.location.href = 'index.html';
+                } else {
+                    $('#loginAlert').fadeIn();
+                    setTimeout(function() {
+                        $('#loginAlert').fadeOut();
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

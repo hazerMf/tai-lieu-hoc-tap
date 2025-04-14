@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản Lý Kho Hàng - Thống Kê</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <span class="glyphicon glyphicon-menu-hamburger"></span>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <span class="glyphicon glyphicon-home"></span> Quản Lý Kho Hàng
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="index.html">
+                    <span class="glyphicon glyphicon-dashboard"></span> Bảng Điều Khiển
+                </a>
+            </li>
+            <li>
+                <a href="product.html">
+                    <span class="glyphicon glyphicon-list"></span> Sản Phẩm
+                </a>
+            </li>
+            <li>
+                <a href="provider.html">
+                    <span class="glyphicon glyphicon-briefcase"></span> Nhà Cung Cấp
+                </a>
+            </li>
+            <li>
+                <a href="#" class="active">
+                    <span class="glyphicon glyphicon-stats"></span> Thống Kê
+                </a>
+            </li>
+            <li>
+                <a href="settings.html">
+                    <span class="glyphicon glyphicon-cog"></span> Cài Đặt
+                </a>
+            </li>
+            <li>
+                <a href="login.html">
+                    <span class="glyphicon glyphicon-log-out"></span> Đăng Xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="top-bar">
+            <div class="search-box">
+                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+            </div>
+            <div class="user-menu">
+                <span class="glyphicon glyphicon-bell"></span>
+                <span class="glyphicon glyphicon-user"></span>
+                <span>Quản Trị Viên</span>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="content-header">
+                <h2>Thống Kê Hệ Thống</h2>
+                <div class="period-selector">
+                    <select class="form-control" id="periodSelect">
+                        <option value="week">Tuần này</option>
+                        <option value="month" selected>Tháng này</option>
+                        <option value="quarter">Quý này</option>
+                        <option value="year">Năm nay</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>45,250,000đ</h3>
+                    <p>Doanh Thu</p>
+                    <span class="stat-change positive">+12.5%</span>
+                </div>
+                <div class="stat-card">
+                    <h3>1,204</h3>
+                    <p>Tổng Hàng Tồn</p>
+                    <span class="stat-change negative">-5.2%</span>
+                </div>
+                <div class="stat-card">
+                    <h3>28</h3>
+                    <p>Đơn Hàng</p>
+                    <span class="stat-change positive">+8.3%</span>
+                </div>
+                <div class="stat-card">
+                    <h3>15</h3>
+                    <p>Nhà Cung Cấp</p>
+                    <span class="stat-change positive">+2</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="chart-card">
+                        <h3>Doanh Thu Theo Tháng</h3>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="chart-card">
+                        <h3>Phân Loại Sản Phẩm</h3>
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h3>Sản Phẩm Bán Chạy</h3>
+                        <canvas id="topProductsChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h3>Nhà Cung Cấp Hàng Đầu</h3>
+                        <canvas id="topProvidersChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart-card">
+                        <h3>Lịch Sử Đơn Hàng</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Đơn</th>
+                                        <th>Ngày</th>
+                                        <th>Khách Hàng</th>
+                                        <th>Số Lượng</th>
+                                        <th>Tổng Tiền</th>
+                                        <th>Trạng Thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#1234</td>
+                                        <td>25/03/2024</td>
+                                        <td>Công Ty A</td>
+                                        <td>50</td>
+                                        <td>5,000,000đ</td>
+                                        <td><span class="status-badge status-active">Đã Hoàn Thành</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1233</td>
+                                        <td>24/03/2024</td>
+                                        <td>Công Ty B</td>
+                                        <td>30</td>
+                                        <td>3,000,000đ</td>
+                                        <td><span class="status-badge status-active">Đã Hoàn Thành</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#1232</td>
+                                        <td>23/03/2024</td>
+                                        <td>Công Ty C</td>
+                                        <td>25</td>
+                                        <td>2,500,000đ</td>
+                                        <td><span class="status-badge status-pending">Đang Xử Lý</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Check if user is logged in
+            if (!sessionStorage.getItem('isLoggedIn')) {
+                window.location.href = 'login.html';
+            }
+
+            // Update username
+            $('.user-menu span:last').text(sessionStorage.getItem('username') || 'Quản Trị Viên');
+
+            // Handle logout
+            $('.sidebar-menu a[href="login.html"]').click(function(e) {
+                e.preventDefault();
+                if (confirm('Bạn có chắc chắn muốn đăng xuất?')) {
+                    sessionStorage.removeItem('isLoggedIn');
+                    sessionStorage.removeItem('username');
+                    window.location.href = 'login.html';
+                }
+            });
+
+            // Handle sidebar toggle
+            $('#sidebarToggle').click(function() {
+                $('.sidebar').toggleClass('active');
+            });
+
+            // Handle mobile menu clicks
+            if ($(window).width() <= 768) {
+                $('.sidebar-menu a').click(function() {
+                    $('.sidebar').removeClass('active');
+                });
+            }
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+                    datasets: [{
+                        label: 'Doanh Thu',
+                        data: [30000000, 35000000, 40000000, 38000000, 42000000, 45250000],
+                        borderColor: '#3498db',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    }
+                }
+            });
+
+            // Category Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Thực Phẩm', 'Đồ Uống', 'Văn Phòng Phẩm', 'Khác'],
+                    datasets: [{
+                        data: [40, 30, 20, 10],
+                        backgroundColor: ['#3498db', '#2ecc71', '#f1c40f', '#e74c3c']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+
+            // Top Products Chart
+            const topProductsCtx = document.getElementById('topProductsChart').getContext('2d');
+            new Chart(topProductsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Sản Phẩm A', 'Sản Phẩm B', 'Sản Phẩm C', 'Sản Phẩm D', 'Sản Phẩm E'],
+                    datasets: [{
+                        label: 'Số Lượng Bán',
+                        data: [120, 90, 80, 70, 60],
+                        backgroundColor: '#3498db'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Top Providers Chart
+            const topProvidersCtx = document.getElementById('topProvidersChart').getContext('2d');
+            new Chart(topProvidersCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Nhà CC A', 'Nhà CC B', 'Nhà CC C', 'Nhà CC D', 'Nhà CC E'],
+                    datasets: [{
+                        label: 'Số Lượng Hàng',
+                        data: [500, 400, 300, 200, 100],
+                        backgroundColor: '#2ecc71'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            // Handle period change
+            $('#periodSelect').change(function() {
+                // Here you would typically fetch new data based on the selected period
+                console.log('Period changed to:', $(this).val());
+            });
+        });
+    </script>
+</body>
+</html> 
