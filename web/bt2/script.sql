@@ -30,7 +30,7 @@ CREATE TABLE ProductInventory (
     FOREIGN KEY (ProductId) REFERENCES Product(id) ON DELETE CASCADE
 );
 
-CREATE TABLE User (
+CREATE TABLE Employee (
     id VARCHAR(20) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     username VARCHAR(20) NOT NULL,
@@ -45,7 +45,7 @@ VALUES
 ('KHO001', 'Kho Chính', 'Hà Nội', 10000, '0123456789', '2023-01-01'),
 ('KHO002', 'Kho Phụ', 'Hồ Chí Minh', 5000, '0987654321', '2023-02-15');
 
-INSERT INTO User (id, name, username, password, role, InventoryId)
+INSERT INTO Employee (id, name, username, password, role, InventoryId)
 VALUES
 ('ND001', 'Nguyễn Thị Ánh', 'anhnguyen', 'matkhau123', 'quanly', 'KHO001'),
 ('ND002', 'Trần Văn Bảo', 'baotran', 'baomat123', 'nhanvien', 'KHO001'),
