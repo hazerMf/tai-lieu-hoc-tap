@@ -1,4 +1,3 @@
-<!-- filepath: c:\Users\User\Desktop\tai-lieu-hoc-tap\PTTK HT\Code\WebApplication1\web\view\Staff\CustomerInvoiceView.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*, model.Invoice" %>
 <!DOCTYPE html>
