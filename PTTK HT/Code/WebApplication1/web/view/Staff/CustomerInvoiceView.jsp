@@ -80,19 +80,32 @@
                     <th>Billing Address</th>
                     <th>Payment Method</th>
                     <th>Total</th>
+                    <th></th> <!-- detail button column -->
                 </tr>
             </thead>
             <tbody>
                 <% 
                     java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    String customerName = request.getAttribute("customerName") != null ? (String) request.getAttribute("customerName") : "";
                     for (Invoice invoice : invoices) { 
+                        String encCust = java.net.URLEncoder.encode(customerName, "UTF-8");
+                        String payDateStr = invoice.getPayDate() != null ? sdf.format(invoice.getPayDate()) : "";
+                        String encDate = java.net.URLEncoder.encode(payDateStr, "UTF-8");
+                        String encAddr = java.net.URLEncoder.encode(invoice.getBillingAddress() != null ? invoice.getBillingAddress() : "", "UTF-8");
+                        String encPayMethod = java.net.URLEncoder.encode(invoice.getPaymentMethod() != null ? invoice.getPaymentMethod() : "", "UTF-8");
                 %>
                 <tr>
                     <td><%= invoice.getId() %></td>
-                    <td><%= invoice.getPayDate() != null ? sdf.format(invoice.getPayDate()) : "" %></td>
+                    <td><%= payDateStr %></td>
                     <td><%= invoice.getBillingAddress() != null ? invoice.getBillingAddress() : "" %></td>
                     <td><%= invoice.getPaymentMethod() != null ? invoice.getPaymentMethod() : "" %></td>
                     <td><%= String.format("%,.0f", invoice.getGrandTotal()) %></td>
+                    <td>
+                        <a class="view-btn" 
+                           href="<%= request.getContextPath() %>/view/Staff/InvoiceView.jsp?invoiceId=<%= invoice.getId() %>&customerName=<%= encCust %>&payDate=<%= encDate %>&grandTotal=<%= invoice.getGrandTotal() %>&discount=<%= invoice.getDiscount() %>&billingAddress=<%= encAddr %>&paymentMethod=<%= encPayMethod %>">
+                            View Detail
+                        </a>
+                    </td>
                 </tr>
                 <% } %>
             </tbody>
