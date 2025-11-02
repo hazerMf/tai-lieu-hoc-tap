@@ -1,0 +1,10 @@
+@startuml
+
+package "Register as a member" {
+	usecase (Register)
+}
+
+actor Customer
+
+(Register) -- :Customer:
+@enduml

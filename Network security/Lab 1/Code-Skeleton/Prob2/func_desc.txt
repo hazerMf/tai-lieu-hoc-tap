@@ -1,0 +1,29 @@
+Built in functions information:
+
+We will give a brief description of the merely built in functions you are
+allowed to use.
+You can find information on most of the built in functions we are using in the
+sample source codes at http://www.openssl.org/docs/crypto/crypto.html
+
+- DES_encrypt1
+You will use a built in function called DES_encrypt1 to do the actual DES encryption / decryption.
+As a reference on how to use this function, you can view the file tempdes_simple.c.
+
+DES_encrypt1(long *data, DES_key_schedule *ks, int enc)
+
+        a. data: This argument is a pointer to a two element array of type long (4 bytes) that will
+        contain the data you will read from the file but packed in a type long variable.
+	NOTE: Characters are loaded into this function in little endian format. For example, the string 
+	{0xA0,0xB7,0x07,0x08} is 08 07 B7 A0 in little endian format (least significant bit goes first).
+        b. ks: is a pointer to the actual key array. Don.t worry about this argument data type.
+        c. enc: has a value of 1 for encryption and 0 for decryption.
+
+- DES_set_key_checked
+This function will check that the key passed is of odd parity and is not a week or semi-weak key. If 
+the parity is wrong, then -1 is returned. If the key is a weak key, then -2 is returned. If an error 
+is returned, the key schedule is not generated.
+
+DES_set_key_checked(const_des_cblock *key, DES_key_schedule *schedule)
+	a. key: is a pointer to the actual key array. Don.t worry about this argument data type.
+	b. schedule: is the new key, that will be used as an input argument to
+	   the function DES_encrypt1

@@ -1,0 +1,41 @@
+@startuml
+top to bottom direction
+actor User
+actor Staff
+actor Saler
+actor Warehouse_staff
+actor Management_staff
+package "Supermarket management system" {
+	usecase (Manage supplier information)
+	usecase (Manage item information)
+	usecase (Process direct purchase)
+	usecase (Process online order)
+	usecase (Customer register)
+	usecase (Import item)
+	usecase (Login)
+	usecase (View statistics)
+	usecase (Place online order)
+	usecase (Search item)
+}
+
+actor Supplier
+actor Customer
+
+:User: <|-- :Customer:
+:User: <|-- :Staff:
+:User: -- (Login)
+:Staff: <|-- :Warehouse_staff:
+:Staff: <|-- :Management_staff:
+:Staff: <|-- :Saler:
+(Search item) -- :Customer:
+(Process online order) -- :Warehouse_staff:
+:Warehouse_staff: -- (Manage item information)
+(Place online order) -- :Customer:
+(Customer register) -- :Customer:
+(Process direct purchase) -- :Customer:
+:Saler: -- (Process direct purchase)
+(Manage supplier information) -- :Warehouse_staff:
+:Management_staff: -- (View statistics)
+(Import item) -- :Supplier:
+:Warehouse_staff: -- (Import item)
+@enduml

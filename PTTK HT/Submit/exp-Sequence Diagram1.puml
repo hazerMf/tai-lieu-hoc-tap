@@ -1,0 +1,16 @@
+@startuml
+autonumber
+actor Customer
+boundary MainMenuForm
+boundary RegisterForm
+entity Customer
+Customer -> MainMenuForm : Click Register
+MainMenuForm -> RegisterForm : Call
+RegisterForm --> Customer : Display
+Customer -> RegisterForm : Enter information and click register
+RegisterForm -> Customer : Call
+Customer -> Customer : register()
+Customer --> RegisterForm : return
+RegisterForm --> Customer : display result
+
+@enduml

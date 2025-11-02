@@ -1,0 +1,47 @@
+@startuml
+autonumber
+actor ManagementStaff
+boundary LoginView
+boundary StaffMenuView
+boundary StatisticsView
+boundary CustomerStatisticsView
+boundary CustomerInvoiceView
+boundary InvoiceView
+entity CustomerStatistics
+entity Invoice
+entity Order
+entity Staff
+ManagementStaff -> LoginView : Enter credential, click Login
+LoginView -> Staff : call
+Staff -> Staff : login()
+Staff --> LoginView : return
+LoginView -> StaffMenuView : call
+StaffMenuView --> ManagementStaff : display
+ManagementStaff -> StaffMenuView : Click View Statistics
+StaffMenuView -> StatisticsView : call
+StatisticsView --> ManagementStaff : display
+ManagementStaff -> StatisticsView : Click View Customer Statistics
+StatisticsView -> CustomerStatisticsView : call
+CustomerStatisticsView --> ManagementStaff : display
+ManagementStaff -> CustomerStatisticsView : Enter date and click search
+CustomerStatisticsView -> CustomerStatistics : call
+CustomerStatistics -> CustomerStatistics : getCustomerStatistics()
+CustomerStatistics --> CustomerStatisticsView : return
+CustomerStatisticsView --> ManagementStaff : display
+ManagementStaff -> CustomerStatisticsView : Click a customer
+CustomerStatisticsView -> CustomerInvoiceView : call
+CustomerInvoiceView -> Invoice : call
+Invoice -> Invoice : getInvoiceByCustomer
+Invoice --> CustomerInvoiceView : return
+CustomerInvoiceView --> ManagementStaff : display
+ManagementStaff -> CustomerInvoiceView : Click an Invoice
+CustomerInvoiceView -> InvoiceView : call
+InvoiceView -> Invoice : call
+Invoice -> Invoice : getInvoice()
+Invoice -> Order : call
+Order -> Order : getOrder()
+Order --> Invoice : return
+Invoice --> InvoiceView : return
+InvoiceView --> ManagementStaff : display
+
+@enduml

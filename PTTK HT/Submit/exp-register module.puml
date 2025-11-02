@@ -1,0 +1,34 @@
+@startuml
+class MainMenuView {
+	-subRegisterForm
+}
+
+class User {
+	-name
+	-password
+	-address
+	-email
+	-phoneNumber
+	-role
+}
+
+class RegisterView {
+	-inName
+	-inAddress
+	-inPhoneNumber
+	-inEmail
+	-inPassword
+	-inConfirmPassword
+	-subRegister
+	-subBack
+}
+
+class Customer {
+	+register()
+}
+
+
+RegisterView -- Customer
+User <|-- Customer
+MainMenuView -- RegisterView
+@enduml

@@ -1,0 +1,99 @@
+@startuml
+class ManagementStaff
+class Staff {
+	+login()
+}
+
+class LoginView {
+	-inUsername
+	-inPassword
+	-subLogin
+}
+
+class StaffMenuView {
+	-subViewStatistics
+}
+
+class User {
+	-name
+	-password
+	-address
+	-email
+	-phoneNumber
+	-role
+}
+
+class ItemOrder {
+	-quantity
+	-price
+}
+
+class StatisticsView {
+	-subViewCustomerStatistics
+	-subBack
+}
+
+class Item {
+	-name
+	-price
+	-description
+}
+
+class Order {
+	-date
+	-status
+	-totalAmount
+	+getOrder()
+}
+
+class Customer
+class CustomerStatisticsView {
+	-outsubCustomerStatistics
+	-inStartDate
+	-inEndDate
+	-subSearch
+	-subBack
+}
+
+class Invoice {
+	-billingAddress
+	-grandTotal
+	-discount
+	-paymentMethod
+	+getInvoice()
+	+getInvoiceByCustomer()
+}
+
+class CustomerStatistics {
+	+getCustomerStatistics()
+}
+
+class CustomerInvoiceView {
+	-outsubCustomerInvoice
+	-subBack
+}
+
+class InvoiceView {
+	-outInvoiceDetail
+	-subBack
+}
+
+
+LoginView -- Staff
+User <|-- Staff
+Staff <|-- ManagementStaff
+LoginView -- StaffMenuView
+Invoice -- CustomerInvoiceView
+Invoice -- InvoiceView
+CustomerStatisticsView -- CustomerStatistics
+CustomerInvoiceView -- InvoiceView
+CustomerStatisticsView -- CustomerInvoiceView
+StatisticsView -- CustomerStatisticsView
+StaffMenuView -- StatisticsView
+Invoice "1" -- "1" Order
+Order "1..*" -- "1" Customer
+Customer <|-- CustomerStatistics
+User <|-- Customer
+Order -- Item
+(Order, Item) .. ItemOrder
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+top to bottom direction
+actor User
+actor Staff
+actor Management_staff
+package "Views customer statistics" {
+	usecase (View statistics)
+	usecase (Login)
+	usecase (View customer statistics by revenue)
+	usecase (View customer transaction)
+}
+
+
+(View customer statistics by revenue) <.. (View customer transaction) : <<Extend>> 
+(View statistics) <.. (View customer statistics by revenue) : <<Extend>> 
+(View statistics) ..> (Login) : <<Include>> 
+:User: -- (Login)
+:User: <|-- :Staff:
+:Staff: <|-- :Management_staff:
+:Management_staff: -- (View statistics)
+@enduml

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!--
+      This sets the solid background color of the button to white.
+    -->
+    <solid android:color="@color/colorWhite" />
+
+    <!--
+      This defines the roundness of the corners, matching the primary button.
+    -->
+    <corners android:radius="12dp" />
+
+    <!--
+      This creates the border (outline) around the button.
+      - android:width="1dp" sets the thickness of the border.
+      - android:color="@color/colorBorder" sets the border color to the
+        light gray defined in your colors.xml file.
+    -->
+    <stroke
+        android:width="1dp"
+        android:color="@color/colorBorder" />
+
+</shape>

@@ -1,0 +1,88 @@
+@startuml
+class SupplierStatistic
+class Supplier {
+	-name
+	-phoneNumber
+	-email
+}
+
+class ImportItem {
+	-quantity
+	-price
+}
+
+class ImportInvoice {
+	-date
+	-grandTotal
+}
+
+class ItemStatistics
+class Item {
+	-name
+	-price
+	-description
+}
+
+class WarehouseStaff
+class DirectOrder
+class Saler
+class ItemOrder {
+	-quantity
+	-price
+}
+
+class ManagementStaff
+class Invoice {
+	-billingAdress
+	-grandTotal
+	-discount
+	-paymentMethod
+}
+
+class Order {
+	-date
+	-status
+	-totalAmount
+}
+
+class Staff
+class DeliveryStaff
+class OnlineOrder {
+	-deliverAdress
+	-deliverFee
+}
+
+class CustomerStatistics
+class User {
+	-name
+	-password
+	-address
+	-email
+	-phoneNumber
+	-role
+}
+
+class Customer
+
+ImportInvoice "1..*" -- "1" WarehouseStaff
+ImportInvoice "1..*" -- "1" Supplier
+ImportInvoice "1..*" -- "1..*" Item
+(ImportInvoice, Item).ImportItem
+Order "1..*" -- "1" Customer
+Item "1..*" -- "1..*" Order
+(Item, Order).ItemOrder
+Invoice "1" -- "1" Order
+Item <|-- ItemStatistics
+Supplier <|-- SupplierStatistic
+Customer <|-- CustomerStatistics
+User <|-- Customer
+User <|-- Staff
+Order <|-- OnlineOrder
+Order <|-- DirectOrder
+OnlineOrder "1..*" -- "1" DeliveryStaff
+DirectOrder "1..*" -- "1" Saler
+Staff <|-- DeliveryStaff
+Staff <|-- WarehouseStaff
+Staff <|-- ManagementStaff
+Staff <|-- Saler
+@enduml
