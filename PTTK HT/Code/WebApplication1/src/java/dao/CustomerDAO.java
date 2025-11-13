@@ -11,6 +11,21 @@ public class CustomerDAO extends DAO {
             new DAO();
         }
 
+        // Check for duplicates
+        String checkDuplicate = "SELECT COUNT(*) FROM tblUser WHERE phoneNumber = ? OR email = ?";
+        try (PreparedStatement ps = connection.prepareStatement(checkDuplicate)) {
+            ps.setString(1, customer.getPhoneNumber());
+            ps.setString(2, customer.getEmail());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("[CustomerDAO] Duplicate phone or email found.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("[CustomerDAO] Duplicate check failed: " + e.getMessage());
+            return false;
+        }
+
         String insertUser = "INSERT INTO tblUser (name, password, email, phoneNumber, address, role) VALUES (?, ?, ?, ?, ?, ?)";
         String insertCustomer = "INSERT INTO tblCustomer (tblUserId) VALUES (?)";
 

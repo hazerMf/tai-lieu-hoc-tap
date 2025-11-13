@@ -17,7 +17,6 @@ public class CustomerController extends HttpServlet {
         System.out.println("[CustomerController] doPost triggered");
         System.out.println("Available drivers: " + java.sql.DriverManager.getDrivers().hasMoreElements());
 
-
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
@@ -32,7 +31,9 @@ public class CustomerController extends HttpServlet {
 
         if (!password.equals(confirm)) {
             System.out.println("[CustomerController] Password mismatch");
-            response.sendRedirect(request.getContextPath() + "/view/customer/RegisterView.jsp?error=pw");
+            request.setAttribute("status", "error");
+            request.setAttribute("message", "Passwords do not match");
+            request.getRequestDispatcher("/view/Customer/RegisterView.jsp").forward(request, response);
             return;
         }
 
@@ -47,11 +48,15 @@ public class CustomerController extends HttpServlet {
         boolean success = dao.register(customer);
 
         if (success) {
-            System.out.println("[CustomerController] Insert success, redirecting...");
-            response.sendRedirect(request.getContextPath() + "/MenuView.jsp");
+            System.out.println("[CustomerController] Insert success");
+            request.setAttribute("status", "success");
+            request.setAttribute("message", "Registration successful!");
+            request.getRequestDispatcher("/view/Customer/RegisterView.jsp").forward(request, response);
         } else {
-            System.out.println("[CustomerController] Insert failed, redirecting...");
-            response.sendRedirect(request.getContextPath() + "/view/Customer/RegisterView.jsp");
+            System.out.println("[CustomerController] Insert failed");
+            request.setAttribute("status", "error");
+            request.setAttribute("message", "Registration failed. Please try again.");
+            request.getRequestDispatcher("/view/Customer/RegisterView.jsp").forward(request, response);
         }
     }
 }

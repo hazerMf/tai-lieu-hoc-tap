@@ -6,21 +6,97 @@
     <meta charset="utf-8">
     <title>Invoice Detail</title>
     <style>
-        body { font-family: Arial, sans-serif; background:#f8f9fc; margin:0; padding:20px; }
-        .container { max-width:980px; margin:0 auto; background:#fff; padding:22px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-        .back { display:inline-block; margin-bottom:12px; background:#e5e7eb; padding:8px 12px; border-radius:6px; text-decoration:none; color:#111; }
-        h2 { margin:0 0 8px 0; color:#222; }
-        .meta { color:#444; margin-bottom:14px; font-size:14px; }
-        .meta b { color:#111; }
-        table { width:100%; border-collapse:collapse; margin-top:12px; }
-        th, td { padding:10px 12px; border-bottom:1px solid #e6e9ef; text-align:left; }
-        thead { background:#f4f6f8; font-weight:600; }
-        .summary { margin-top:14px; text-align:right; font-size:15px; color:#111; }
-        .muted { color:#6b7280; font-style:italic; font-size:13px; }
-        .empty { text-align:center; padding:12px; color:#666; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background:#f8f9fc; 
+            margin:0; 
+            padding:20px; 
+        }
+        .banner {
+            background-color: #1f2937;
+            color: white;
+            padding: 20px;
+            padding-left: 40px;
+            text-align: left;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        .container { 
+            max-width:980px; 
+            margin:0 auto; 
+            background:#fff; 
+            padding:22px; 
+            border-radius:8px; 
+            box-shadow:0 2px 8px rgba(0,0,0,0.08); 
+        }
+        .back { 
+            float: right;
+            display:inline-block; 
+            margin-bottom:12px; 
+            background:#e5e7eb; 
+            padding:8px 12px; 
+            border-radius:6px; 
+            text-decoration:none; 
+            color:#111; 
+        }
+        h2 { 
+            margin:0 0 8px 0; 
+            color:#222; 
+        }
+        .meta { 
+            color:#444; 
+            margin-bottom:14px; 
+            font-size:14px; 
+        }
+        .meta b { 
+            color:#111; 
+        }
+        table { 
+            width:100%; 
+            border-collapse:collapse; 
+            margin-top:12px; 
+        }
+        th, td { 
+            padding:10px 12px;
+            border-bottom:1px solid #e6e9ef; 
+            text-align:left; 
+        }
+        thead { 
+            background:#f4f6f8; 
+            font-weight:600; 
+        }
+        .summary {
+             margin-top:14px; 
+             text-align:right; 
+             font-size:15px; 
+             color:#111; 
+        }
+        .muted { 
+            color:#6b7280; 
+            font-style:italic; 
+            font-size:13px; 
+        }
+        .empty { 
+            text-align:center; 
+            padding:12px; 
+            color:#666; 
+        }
+        .space{
+            padding: 30px;
+        }
     </style>
 </head>
 <body>
+    <div class="space"></div>
+<div class="banner">
+    Supermarket Management
+</div>
 <div class="container">
     <a class="back" href="javascript:history.back()">Back</a>
     <h2>Invoice Detail</h2>
