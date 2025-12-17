@@ -11,7 +11,6 @@ public class CustomerDAO extends DAO {
             new DAO();
         }
 
-        // Check for duplicates
         String checkDuplicate = "SELECT COUNT(*) FROM tblUser WHERE phoneNumber = ? OR email = ?";
         try (PreparedStatement ps = connection.prepareStatement(checkDuplicate)) {
             ps.setString(1, customer.getPhoneNumber());

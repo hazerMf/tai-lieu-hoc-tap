@@ -20,7 +20,6 @@ public class CustomerStatisticsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // Initial page load
         req.getRequestDispatcher("/view/Staff/CustomerStatisticsView.jsp").forward(req, resp);
     }
 
@@ -30,7 +29,6 @@ public class CustomerStatisticsController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         
-        // Check if this is an AJAX request
         String xrw = req.getHeader("X-Requested-With");
         boolean isAjax = xrw != null && "XMLHttpRequest".equalsIgnoreCase(xrw);
 
@@ -48,7 +46,6 @@ public class CustomerStatisticsController extends HttpServlet {
                 System.out.println("[CustomerStatisticsController] Found " + list.size() + " records");
 
                 if (isAjax) {
-                    // Return JSON for AJAX request
                     resp.setContentType("application/json;charset=UTF-8");
                     try (PrintWriter out = resp.getWriter()) {
                         out.print("[");
@@ -65,7 +62,6 @@ public class CustomerStatisticsController extends HttpServlet {
                         out.print("]");
                     }
                 } else {
-                    // Fallback: traditional form submit
                     req.setAttribute("stats", list);
                     req.getRequestDispatcher("/view/Staff/CustomerStatisticsView.jsp").forward(req, resp);
                 }
@@ -93,7 +89,6 @@ public class CustomerStatisticsController extends HttpServlet {
         }
     }
 
-    // JSON string escaper
     private String toJson(String s) {
         if (s == null) return "null";
         StringBuilder sb = new StringBuilder("\"");

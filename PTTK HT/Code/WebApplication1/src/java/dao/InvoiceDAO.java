@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class InvoiceDAO extends DAO {
     
-    public List<Invoice> getCustomerInvoices(int customerId, Date startDate, Date endDate) {
+    public List<Invoice> getCustomerInvoice(int customerId, Date startDate, Date endDate) {
         List<Invoice> invoices = new ArrayList<>();
         
         if (connection == null) {

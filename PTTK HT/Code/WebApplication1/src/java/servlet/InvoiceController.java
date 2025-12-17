@@ -35,7 +35,7 @@ public class InvoiceController extends HttpServlet {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date startDate = sdf.parse(fromDateParam);
                     Date endDate = sdf.parse(toDateParam);
-                    invoices = dao.getCustomerInvoices(customerId, startDate, endDate);
+                    invoices = dao.getCustomerInvoice(customerId, startDate, endDate);
 
                     req.setAttribute("fromDate", fromDateParam);
                     req.setAttribute("toDate", toDateParam);
@@ -44,7 +44,6 @@ public class InvoiceController extends HttpServlet {
                 }
 
                 req.setAttribute("invoices", invoices);
-                // pass through the customer name for display
                 if (customerName != null) {
                     req.setAttribute("customerName", java.net.URLDecoder.decode(customerName, "UTF-8"));
                 }

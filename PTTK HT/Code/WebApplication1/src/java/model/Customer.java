@@ -4,7 +4,7 @@ public class Customer extends User {
     private int customerId;
 
     public Customer() {
-        super(); // call User() constructor
+        super();
     }
 
     public Customer(int customerId, int id, String name, String password, String address,

@@ -14,9 +14,6 @@ public class CustomerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("[CustomerController] doPost triggered");
-        System.out.println("Available drivers: " + java.sql.DriverManager.getDrivers().hasMoreElements());
-
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
@@ -48,12 +45,10 @@ public class CustomerController extends HttpServlet {
         boolean success = dao.register(customer);
 
         if (success) {
-            System.out.println("[CustomerController] Insert success");
             request.setAttribute("status", "success");
             request.setAttribute("message", "Registration successful!");
             request.getRequestDispatcher("/view/Customer/RegisterView.jsp").forward(request, response);
         } else {
-            System.out.println("[CustomerController] Insert failed");
             request.setAttribute("status", "error");
             request.setAttribute("message", "Registration failed. Please try again.");
             request.getRequestDispatcher("/view/Customer/RegisterView.jsp").forward(request, response);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 import java.sql.*;
@@ -9,13 +5,9 @@ import java.util.*;
 import model.ItemOrder;
 import model.Item;
 
-/**
- *
- * @author User
- */
 public class ItemOrderDAO extends DAO {
 
-    public List<ItemOrder> getItemsByInvoiceId(int invoiceId) {
+    public List<ItemOrder> getOrderDetail(int invoiceId) {
         List<ItemOrder> items = new ArrayList<>();
         if (connection == null) {
             System.out.println("[ItemOrderDAO] connection null, initializing DAO");

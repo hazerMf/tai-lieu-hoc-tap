@@ -26,7 +26,7 @@ public class ItemOrderController extends HttpServlet {
 
         try {
             int invoiceId = Integer.parseInt(invoiceIdParam);
-            List<ItemOrder> items = dao.getItemsByInvoiceId(invoiceId);
+            List<ItemOrder> items = dao.getOrderDetail(invoiceId);
 
             resp.setContentType("application/json;charset=UTF-8");
             try (PrintWriter out = resp.getWriter()) {
@@ -50,13 +50,6 @@ public class ItemOrderController extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Allow POST to behave like GET
-        doGet(req, resp);
-    }
-
-    // safe JSON string escaper
     private String toJson(String s) {
         if (s == null) return "null";
         StringBuilder sb = new StringBuilder("\"");

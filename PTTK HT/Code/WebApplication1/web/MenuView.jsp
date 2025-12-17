@@ -83,6 +83,71 @@
         .menu a:hover {
             background-color: #1e40af;
         }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .login-form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .login-form button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-form button:hover {
+            background-color: #1e40af;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            color: #dc2626;
+        }
+        .modal-content p {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .modal-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .modal-btn:hover {
+            background-color: #1e40af;
+        }
     </style>
 </head>
 <body>
@@ -103,9 +168,22 @@
             </div>
             
             <div id="staffMenu" class="menu">
-                <h2>Staff Menu</h2>
-                <a href="view/Staff/CustomerStatisticsView.jsp">View Statistics</a>
+                <h2>Staff Login</h2>
+                <form class="login-form" action="<%= request.getContextPath() %>/StaffController" method="post">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Login Error Modal -->
+    <div id="loginErrorModal" class="modal">
+        <div class="modal-content">
+            <h2>Login Failed</h2>
+            <p><%= request.getAttribute("loginMessage") != null ? request.getAttribute("loginMessage") : "" %></p>
+            <button class="modal-btn" onclick="closeLoginError()">OK</button>
         </div>
     </div>
 
@@ -127,6 +205,20 @@
                 buttons[1].classList.add('active');
             }
         }
+
+        function closeLoginError() {
+            document.getElementById('loginErrorModal').style.display = 'none';
+        }
+
+        <%
+            String loginStatus = (String) request.getAttribute("loginStatus");
+            if ("error".equals(loginStatus)) {
+        %>
+            document.getElementById('loginErrorModal').style.display = 'block';
+            showMenu('staff');
+        <%
+            }
+        %>
     </script>
 </body>
 </html>

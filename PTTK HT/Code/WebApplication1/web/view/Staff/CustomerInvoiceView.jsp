@@ -2,7 +2,6 @@
 <%@ page import="java.util.*, model.Invoice" %>
 <%@ page import="java.net.URLEncoder" %>
 <%
-// Minimal logic fix: if data not loaded yet, redirect to controller (doGet) with same params
 Object invAttr = request.getAttribute("invoices");
 String redirected = request.getParameter("redirected");
 if (invAttr == null && (redirected == null || redirected.isEmpty())) {
@@ -59,7 +58,7 @@ if (invAttr == null && (redirected == null || redirected.isEmpty())) {
         .content {
             display: flex;
             justify-content: center;
-            margin-top: 84px; /* space for fixed banner */
+            margin-top: 84px;
         }
         .menu {
             background: white;
@@ -178,7 +177,7 @@ if (invAttr == null && (redirected == null || redirected.isEmpty())) {
                     <th>Billing Address</th>
                     <th>Payment Method</th>
                     <th>Total</th>
-                    <th></th> <!-- detail button column -->
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

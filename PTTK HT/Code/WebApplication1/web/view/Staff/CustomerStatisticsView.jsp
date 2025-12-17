@@ -11,12 +11,6 @@
             margin: 0;
             padding: 0;
         }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-            margin: 0;
-            padding: 0;
-        }
         .banner {
             background-color: #1f2937;
             color: white;
@@ -32,51 +26,19 @@
             right: 0;
             z-index: 1000;
         }
-        .content {
-            display: flex;
-            justify-content: center;
-            margin-top: 84px; /* space for fixed banner */
-        }
-        .menu {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-top: 40px;
-        }
-        .menu h2 {
-            margin-bottom: 20px;
-        }
-        .menu a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            background-color: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s;
-        }
-        .menu a:hover {
-            background-color: #1e40af;
-        }
         .container {
             width: 80%;
-            margin: 50px auto;
+            margin: 104px auto 50px;
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             padding: 30px;
         }
-
         h2 {
             text-align: center;
             margin-bottom: 30px;
             color: #333;
         }
-
         .filter {
             display: flex;
             justify-content: center;
@@ -84,14 +46,12 @@
             gap: 15px;
             margin-bottom: 30px;
         }
-
         .filter input[type="date"] {
             padding: 8px 10px;
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
         }
-
         .filter button {
             background-color: #007bff;
             border: none;
@@ -101,11 +61,9 @@
             cursor: pointer;
             font-weight: bold;
         }
-
         .filter button:hover {
             background-color: #0056b3;
         }
-
         .back-btn {
             float: right;
             background-color: #e5e7eb;
@@ -115,40 +73,32 @@
             cursor: pointer;
             font-weight: 500;
         }
-
         .back-btn:hover {
             background-color: #d1d5db;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
         }
-
         thead {
             background-color: #f1f3f6;
         }
-
         th, td {
             padding: 10px 15px;
             text-align: left;
             border-bottom: 1px solid #e5e7eb;
         }
-
         th {
             font-weight: 600;
         }
-
         td {
             color: #333;
         }
-
         .empty {
             text-align: center;
             color: #666;
             padding: 15px;
         }
-
         .view-btn {
             background-color: #4CAF50;
             color: white;
@@ -156,13 +106,8 @@
             text-decoration: none;
             border-radius: 4px;
         }
-
         .view-btn:hover {
             background-color: #45a049;
-        }
-        
-        .space{
-            padding: 30px;
         }
         .loading { color:#666; font-size:13px; margin-left:10px; display:none; }
     </style>
@@ -173,7 +118,7 @@
     </div>
     
     <div class="container">
-        <button class="back-btn" onclick="window.location.href='<%= request.getContextPath() %>/MenuView.jsp'">Back</button>
+        <button class="back-btn" onclick="window.location.href='<%= request.getContextPath() %>/view/Staff/StaffMenuView.jsp'">Back</button>
         <h2>View Customer Statistics</h2>
 
         <form id="searchForm" class="filter" method="post">

@@ -189,11 +189,9 @@
                 sum += Number(it.total || 0);
             });
 
-            // update totals if passed values are empty or to ensure formatting
             const passedGrand = params.get('grandTotal');
             const passedDiscount = Number(params.get('discount') || 0);
 
-            // if grandTotal passed, show formatted; otherwise compute from items minus discount
             if (passedGrand) {
                 grandEl.textContent = Number(passedGrand).toLocaleString(undefined, {maximumFractionDigits:0});
             } else {
